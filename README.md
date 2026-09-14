@@ -42,13 +42,18 @@ Schedule Trigger
        ↓
    Merge Data
        ↓
- Compare With Previous State
+Compare With Previous State
        ↓
-   ┌───────────────┐
-   │ Ada Penambahan│
-   └───────┬───────┘
-           ↓
-     Telegram Alert
-           ↓
-    Update Monitoring
-        State
+  ┌───────────────┐
+  │ Ada Penambahan│
+  └───────┬───────┘
+          ↓
+    Telegram Alert
+          ↓
+   Update Monitoring
+       State
+```
+
+## Workflow Screenshot
+
+![n8n Workflow](screenshots/n8n-workflow.png)
