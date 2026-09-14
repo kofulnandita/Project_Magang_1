@@ -1,0 +1,781 @@
+{
+  "name": "Monitoring Dashboard Support",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c2329306-7cbd-4fd2-9287-b0e7b708da0b",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": " https://YOUR_METABASE_HOST/api/public/dashboard/86eb420d-d7f4-48de-9acc-58b049ea6687/dashcard/2746/card/2498?parameters=%5B%7B%22type%22%3A%22string%2F%3D%22%2C%22value%22%3Anull%2C%22id%22%3A%2224c00d89%22%2C%22target%22%3A%5B%22dimension%22%2C%5B%22field%22%2C%22service%22%2C%7B%22base-type%22%3A%22type%2FText%22%7D%5D%2C%7B%22stage-number%22%3A0%7D%5D%7D%5D",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        -240
+      ],
+      "id": "b8712b22-e6a1-4de3-a3bf-32d3b50efe70",
+      "name": "Dev Ops (New Ticket)"
+    },
+    {
+      "parameters": {
+        "url": " https://YOUR_METABASE_HOST/api/public/dashboard/86eb420d-d7f4-48de-9acc-58b049ea6687/dashcard/2747/card/2499?parameters=%5B%7B%22type%22%3A%22string%2F%3D%22%2C%22value%22%3Anull%2C%22id%22%3A%2224c00d89%22%2C%22target%22%3A%5B%22dimension%22%2C%5B%22field%22%2C%22service%22%2C%7B%22base-type%22%3A%22type%2FText%22%7D%5D%2C%7B%22stage-number%22%3A0%7D%5D%7D%5D",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        -80
+      ],
+      "id": "99fc5cb6-7631-4588-a29c-822dd5f159fb",
+      "name": "Support (New Ticket)"
+    },
+    {
+      "parameters": {
+        "url": "https://YOUR_METABASE_HOST/api/public/dashboard/86eb420d-d7f4-48de-9acc-58b049ea6687/dashcard/2748/card/2500?parameters=%5B%7B%22type%22%3A%22string%2F%3D%22%2C%22value%22%3Anull%2C%22id%22%3A%2224c00d89%22%2C%22target%22%3A%5B%22dimension%22%2C%5B%22field%22%2C%22service%22%2C%7B%22base-type%22%3A%22type%2FText%22%7D%5D%2C%7B%22stage-number%22%3A0%7D%5D%7D%5D",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        80
+      ],
+      "id": "7899e768-8bc5-4001-a01b-6dea6a8f160d",
+      "name": "DevOps (In Progress)"
+    },
+    {
+      "parameters": {
+        "url": "https://YOUR_METABASE_HOST/api/public/dashboard/86eb420d-d7f4-48de-9acc-58b049ea6687/dashcard/2749/card/2501?parameters=%5B%7B%22type%22%3A%22string%2F%3D%22%2C%22value%22%3Anull%2C%22id%22%3A%2224c00d89%22%2C%22target%22%3A%5B%22dimension%22%2C%5B%22field%22%2C%22service%22%2C%7B%22base-type%22%3A%22type%2FText%22%7D%5D%2C%7B%22stage-number%22%3A0%7D%5D%7D%5D",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        240
+      ],
+      "id": "7cebd6ef-138a-47f2-8cc4-d463aa00e444",
+      "name": "Support (In Progress)"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "61a62227-2084-4140-a436-dd6fdd6a7535",
+              "name": "new_devops",
+              "value": "={{ $json.data.rows[0][0] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        -240
+      ],
+      "id": "8621f4b8-0790-4703-84a0-40f278abb6ca",
+      "name": "new_devops"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ce67b911-5040-4f55-aa55-09fe8beb2ee5",
+              "name": "new_support",
+              "value": "={{ $json.data.rows[0][0] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        -80
+      ],
+      "id": "aef6e83f-9234-464e-ad59-d0573d8db498",
+      "name": "new_support"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "170b3a58-12ec-419c-86d4-e4672338ce61",
+              "name": "progress_devops",
+              "value": "={{ $json.data.rows[0][0] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        80
+      ],
+      "id": "113a9a83-741d-4181-ac67-94e83fbfb165",
+      "name": "progress_devops"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a84caf31-dad5-4631-8d48-7f9ba3d15891",
+              "name": "progress_support",
+              "value": "={{ $json.data.rows[0][0] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        240
+      ],
+      "id": "5e7663f2-ebef-4e3b-b15e-4f1ca2a34350",
+      "name": "progress_support"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        624,
+        -160
+      ],
+      "id": "cdca7af7-2d4b-4f39-bbb9-fbeff68275be",
+      "name": "Gabung New Ticket"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        624,
+        160
+      ],
+      "id": "e3dd0e72-b69f-4fb3-8a30-680508c1cf42",
+      "name": "Gabung In Progress"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        800,
+        0
+      ],
+      "id": "0c1a8973-e939-4458-b6cd-7f0f44897178",
+      "name": "Gabung Semua Data Baru"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1360,
+        16
+      ],
+      "id": "714c978b-c298-40cf-98da-8fc069f9a872",
+      "name": "Gabung Data Baru + Lama"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2b461a8b-66d6-4072-be50-3427180874a3",
+              "leftValue": "={{ $json.new_devops }}",
+              "rightValue": "={{ $json.prev_new_devops }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            },
+            {
+              "id": "40f75c4d-e0cf-4f65-bbc0-06d78ad91fd8",
+              "leftValue": "={{ $json.new_support }}",
+              "rightValue": "={{ $json.prev_new_support }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1552,
+        -176
+      ],
+      "id": "48486b7c-8233-44e3-9133-dbffbd781ec6",
+      "name": "Cek Apakah Ada Penambahan?"
+    },
+    {
+      "parameters": {
+        "chatId": "YOUR_TELEGRAM_CHAT_ID",
+        "text": "=🔔 *TIKET BARU MASUK*\n\n📥 *New Ticket*\n- DevOps: {{ $json.new_devops }}\n- Support: {{ $json.new_support }}\n\n⏳ *In Progress* (info)\n- DevOps: {{ $json.progress_devops }}\n- Support: {{ $json.progress_support }}\n\n🔗 [Buka Dashboard](https://YOUR_METABASE_HOST/public/dashboard/86eb420d-d7f4-48de-9acc-58b049ea6687?date=thisday&service=&tab=231-summary#theme=night&refresh=5)",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1792,
+        -288
+      ],
+      "id": "a557b23c-5d63-4cd9-9e53-6921345ee939",
+      "name": "Kirim Telegram",
+      "webhookId": "YOUR_WEBHOOK_ID",
+      "credentials": {
+        "telegramApi": {
+          "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+          "name": "Telegram account (configure in n8n)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "monitoring_state",
+        "columns": {
+          "column": [
+            {
+              "name": "new_devops",
+              "type": "number"
+            },
+            {
+              "name": "new_support",
+              "type": "number"
+            },
+            {
+              "name": "progress_devops",
+              "type": "number"
+            },
+            {
+              "name": "progress_support",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        944,
+        -112
+      ],
+      "id": "8419885a-50df-4a73-97ae-257e30da1146",
+      "name": "Create a data table"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "YOUR_DATATABLE_ID",
+          "mode": "list",
+          "cachedResultName": "monitoring_state",
+          "cachedResultUrl": "/projects/YOUR_PROJECT_ID/datatables/YOUR_DATATABLE_ID"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "new_devops": 0,
+            "new_support": 0,
+            "progress_devops": 0,
+            "progress_support": 0
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "new_devops",
+              "displayName": "new_devops",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "new_support",
+              "displayName": "new_support",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "progress_devops",
+              "displayName": "progress_devops",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "progress_support",
+              "displayName": "progress_support",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1136,
+        -112
+      ],
+      "id": "76422a53-81f1-4a23-a5a8-0e3189b5f705",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "YOUR_DATATABLE_ID",
+          "mode": "list",
+          "cachedResultName": "monitoring_state",
+          "cachedResultUrl": "/projects/YOUR_PROJECT_ID/datatables/YOUR_DATATABLE_ID"
+        },
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        992,
+        128
+      ],
+      "id": "842e1eb3-534d-47fd-b35f-2b7e12ae6d52",
+      "name": "Ambil Data Tersimpan"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "337f7966-cfcb-47dd-bc82-e76571984581",
+              "name": "prev_new_devops",
+              "value": "={{ $json.new_devops }}",
+              "type": "number"
+            },
+            {
+              "id": "3b39ef29-b0c4-4d31-8f1a-3839c5c2c96b",
+              "name": "prev_new_support",
+              "value": "={{ $json.new_support }}",
+              "type": "number"
+            },
+            {
+              "id": "74f752db-8e7b-4a62-bda4-0cf7865335aa",
+              "name": "prev_progress_devops",
+              "value": "={{ $json.progress_devops }}",
+              "type": "number"
+            },
+            {
+              "id": "dbbd2558-5111-431b-b366-7ea8c27d7de1",
+              "name": "prev_progress_support",
+              "value": "={{ $json.progress_support }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1168,
+        128
+      ],
+      "id": "1bc90b44-dc06-4c79-b5f7-a6a0a67c2f6d",
+      "name": "Prev"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "YOUR_DATATABLE_ID",
+          "mode": "list",
+          "cachedResultName": "monitoring_state",
+          "cachedResultUrl": "/projects/YOUR_PROJECT_ID/datatables/YOUR_DATATABLE_ID"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyValue": "1"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "new_devops": "={{ $('Gabung Semua Data Baru').item.json.new_devops }}",
+            "new_support": "={{ $('Gabung Semua Data Baru').item.json.new_support }}",
+            "progress_devops": "={{ $('Gabung Semua Data Baru').item.json.progress_devops }}",
+            "progress_support": "={{ $('Gabung Semua Data Baru').item.json.progress_support }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "new_devops",
+              "displayName": "new_devops",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "new_support",
+              "displayName": "new_support",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "progress_devops",
+              "displayName": "progress_devops",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "progress_support",
+              "displayName": "progress_support",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1792,
+        -16
+      ],
+      "id": "f07730fc-d712-4d8d-bb01-074bf827ef0a",
+      "name": "Simpan Angka Terbaru"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Dev Ops (New Ticket)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DevOps (In Progress)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Support (In Progress)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Support (New Ticket)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dev Ops (New Ticket)": {
+      "main": [
+        [
+          {
+            "node": "new_devops",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Support (New Ticket)": {
+      "main": [
+        [
+          {
+            "node": "new_support",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DevOps (In Progress)": {
+      "main": [
+        [
+          {
+            "node": "progress_devops",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Support (In Progress)": {
+      "main": [
+        [
+          {
+            "node": "progress_support",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "new_devops": {
+      "main": [
+        [
+          {
+            "node": "Gabung New Ticket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "new_support": {
+      "main": [
+        [
+          {
+            "node": "Gabung New Ticket",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "progress_devops": {
+      "main": [
+        [
+          {
+            "node": "Gabung In Progress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "progress_support": {
+      "main": [
+        [
+          {
+            "node": "Gabung In Progress",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Gabung New Ticket": {
+      "main": [
+        [
+          {
+            "node": "Gabung Semua Data Baru",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gabung In Progress": {
+      "main": [
+        [
+          {
+            "node": "Gabung Semua Data Baru",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Gabung Semua Data Baru": {
+      "main": [
+        [
+          {
+            "node": "Ambil Data Tersimpan",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Gabung Data Baru + Lama",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gabung Data Baru + Lama": {
+      "main": [
+        [
+          {
+            "node": "Cek Apakah Ada Penambahan?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Simpan Angka Terbaru",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cek Apakah Ada Penambahan?": {
+      "main": [
+        [
+          {
+            "node": "Kirim Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kirim Telegram": {
+      "main": [
+        []
+      ]
+    },
+    "Ambil Data Tersimpan": {
+      "main": [
+        [
+          {
+            "node": "Prev",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prev": {
+      "main": [
+        [
+          {
+            "node": "Gabung Data Baru + Lama",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Simpan Angka Terbaru": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "YOUR_WORKFLOW_VERSION_ID",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "YOUR_N8N_INSTANCE_ID"
+  },
+  "nodeGroups": [],
+  "id": "YOUR_WORKFLOW_ID",
+  "tags": []
+}
