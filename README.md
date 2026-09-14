@@ -57,3 +57,7 @@ Compare With Previous State
 ## Workflow Screenshot
 
 ![n8n Workflow](screenshots/n8n-workflow.png)
+
+## Notification Result
+
+![Telegram Notification](screenshots/telegram-notification.png)
