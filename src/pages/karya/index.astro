@@ -1,0 +1,113 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjectRow from "../../components/ProjectRow.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Layout title="Karya">
+  <!-- HEADER -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="badge-pill">
+        <span>&lt;/&gt;</span>
+        <span>KATALOG PORTOFOLIO & STUDI KASUS</span>
+      </div>
+      <h1>Karya & Eksplorasi <em>Proyek Digital</em></h1>
+      <p class="lede">
+        Kumpulan studi kasus dan proyek yang telah kami rancang dan buat
+        selama program magang. Setiap proyek didokumentasikan dengan baik agar detail dari project yang kami laksanakan dapat di Eksplorasi.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROJECTS LIST -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="projects-meta-bar">
+        <span class="projects-count">Menampilkan <strong>{projects.length}</strong> Proyek Yang Telah Kami Kerjakan</span>
+      </div>
+
+      {projects.length === 0 ? (
+        <div class="glass-card" style="text-align: center; padding: 48px;">
+          <p class="lede">
+            Belum ada project. Tambahkan file <code>.md</code> baru di folder
+            <code>src/content/projects/</code> untuk menampilkannya di sini.
+          </p>
+        </div>
+      ) : (
+        <div class="projects-catalog">
+          {projects.map((p) => (
+            <ProjectRow
+              title={p.data.title}
+              description={p.data.description}
+              tags={p.data.tags}
+              href={`/karya/${p.id}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- BOTTOM CALLOUT -->
+  <section class="section section--darker">
+    <div class="container">
+      <div class="glass-card catalog-cta">
+        <div>
+          <h2>Ingin membuat proyek serupa?</h2>
+          <p class="lede" style="margin: 0;">
+            Kami terbuka untuk mendiskusikan arsitektur sistem dan konsep landing page bisnis Anda.
+          </p>
+        </div>
+        <a href="/kontak" class="btn btn--primary">
+          Konsultasi Sekarang
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .projects-meta-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .projects-count {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .projects-count strong {
+    color: var(--accent-cyan);
+  }
+
+  .projects-catalog {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .catalog-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    padding: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .catalog-cta {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 28px;
+    }
+  }
+</style>

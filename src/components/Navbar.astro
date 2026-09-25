@@ -1,0 +1,207 @@
+---
+const links = [
+  { href: "/", label: "Beranda" },
+  { href: "/layanan", label: "Layanan" },
+  { href: "/tentang", label: "Tentang" },
+  { href: "/karya", label: "Karya" },
+  { href: "/kontak", label: "Kontak" },
+];
+const current = Astro.url.pathname;
+---
+
+<header class="nav">
+  <div class="container nav__row">
+    <a href="/" class="nav__brand">
+      <div class="nav__logo-mark" aria-hidden="true">&lt;/&gt;</div>
+      <span class="nav__brand-text">Larik<span>.</span></span>
+    </a>
+
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+      <span class="visually-hidden">Buka menu</span>
+      <span class="nav__toggleBar"></span>
+    </button>
+
+    <nav id="navLinks" class="nav__links">
+      {links.map((l) => {
+        const isActive = current === l.href || (l.href !== "/" && current.startsWith(l.href));
+        return (
+          <a
+            href={l.href}
+            class:list={["nav__link", { "nav__link--active": isActive }]}
+          >
+            {l.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <div class="nav__action">
+      <a href="/kontak" class="btn btn--primary nav__cta">
+        Mulai Project
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(6, 9, 17, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .nav__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 78px;
+    gap: 24px;
+  }
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #ffffff;
+  }
+  .nav__logo-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(59, 130, 246, 0.2));
+    border: 1px solid rgba(0, 210, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    box-shadow: 0 0 12px rgba(0, 210, 255, 0.25);
+  }
+  .nav__brand-text {
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .nav__brand-text span {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav__link {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    font-weight: 500;
+    padding: 8px 0;
+    position: relative;
+    transition: color 0.2s ease;
+  }
+  .nav__link:hover {
+    color: #ffffff;
+  }
+  .nav__link--active {
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .nav__link--active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
+  }
+
+  .nav__action {
+    display: flex;
+    align-items: center;
+  }
+  .nav__cta {
+    padding: 9px 20px;
+    font-size: 0.88rem;
+  }
+
+  .nav__toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+  }
+  .nav__toggleBar,
+  .nav__toggleBar::before,
+  .nav__toggleBar::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.2s ease;
+  }
+  .nav__toggleBar { top: 19px; }
+  .nav__toggleBar::before { top: -7px; }
+  .nav__toggleBar::after { top: 7px; }
+
+  @media (max-width: 820px) {
+    .nav__action { display: none; }
+    .nav__toggle { display: block; }
+    .nav__links {
+      position: absolute;
+      top: 78px;
+      left: 0;
+      right: 0;
+      background: rgba(8, 13, 26, 0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      flex-direction: column;
+      gap: 0;
+      display: none;
+      padding: 12px 0 20px;
+    }
+    .nav__links.is-open {
+      display: flex;
+    }
+    .nav__link {
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      width: 100%;
+    }
+    .nav__link--active::after {
+      display: none;
+    }
+    .nav__link--active {
+      color: var(--accent-cyan);
+      background: rgba(0, 210, 255, 0.05);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById("navToggle");
+  const links = document.getElementById("navLinks");
+  toggle?.addEventListener("click", () => {
+    const isOpen = links?.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(!!isOpen));
+  });
+</script>

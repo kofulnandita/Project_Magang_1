@@ -1,0 +1,223 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((p) => ({
+    params: { slug: p.id },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+// Format date
+const formattedDate = new Intl.DateTimeFormat("id-ID", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+}).format(project.data.date);
+---
+
+<Layout title={project.data.title}>
+  <article class="section">
+    <div class="container detail-container">
+      <a href="/karya" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Kembali ke Katalog Karya
+      </a>
+
+      <div class="detail-header">
+        <div class="detail-tags">
+          {project.data.tags.map((t: string) => <span class="tag">{t}</span>)}
+        </div>
+        <h1 class="detail-title">{project.data.title}</h1>
+        <p class="lede detail-lede">{project.data.description}</p>
+      </div>
+
+      <!-- Project Quick Meta Card -->
+      <div class="glass-card project-meta-box">
+        <div class="meta-item">
+          <span class="meta-label">Tanggal Pelaksanaan</span>
+          <span class="meta-val">{formattedDate}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Tipe Solusi</span>
+          <span class="meta-val">{project.data.tags.join(" • ")}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Status</span>
+          <span class="meta-val status-badge">
+            <span class="status-indicator"></span> Selesai & Teruji
+          </span>
+        </div>
+      </div>
+
+      <hr class="hairline" style="margin: 40px 0;" />
+
+      <!-- Article Content -->
+      <div class="prose">
+        <Content />
+      </div>
+
+      {project.data.link && (
+        <div class="detail-actions">
+          <a href={project.data.link} class="btn btn--primary" target="_blank" rel="noopener">
+            Buka Demo / Live Project
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+      )}
+
+      <!-- Bottom Navigation Footer -->
+      <div class="detail-bottom-nav">
+        <a href="/karya" class="btn btn--ghost">
+          ← Lihat Studi Kasus Lainnya
+        </a>
+        <a href="/kontak" class="btn btn--cyan">
+          Konsultasikan Ide Serupa ↗
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .detail-container {
+    max-width: 820px;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .back-link:hover {
+    color: var(--accent-cyan);
+    transform: translateX(-3px);
+  }
+
+  .detail-header {
+    margin-bottom: 36px;
+  }
+  .detail-tags {
+    margin-bottom: 16px;
+  }
+  .detail-title {
+    font-size: clamp(2.2rem, 4vw + 1rem, 3.2rem);
+    margin-bottom: 16px;
+  }
+  .detail-lede {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .project-meta-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 24px 32px;
+    margin-top: 32px;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+  }
+  .meta-val {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+  }
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #34d399;
+  }
+  .status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 8px #34d399;
+  }
+
+  /* Prose Article Styling */
+  .prose {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+  }
+  .prose :global(h2) {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin: 2em 0 0.6em;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .prose :global(h3) {
+    color: #ffffff;
+    font-size: 1.35rem;
+    margin: 1.5em 0 0.5em;
+  }
+  .prose :global(p) {
+    margin-bottom: 1.4em;
+    color: var(--text-muted);
+  }
+  .prose :global(ul), .prose :global(ol) {
+    margin: 1em 0 1.5em 1.5em;
+    padding: 0;
+  }
+  .prose :global(li) {
+    margin-bottom: 0.5em;
+  }
+  .prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent-cyan);
+  }
+
+  .detail-actions {
+    margin: 40px 0 60px;
+  }
+
+  .detail-bottom-nav {
+    margin-top: 60px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 680px) {
+    .project-meta-box {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
+    .detail-bottom-nav {
+      flex-direction: column;
+    }
+  }
+</style>

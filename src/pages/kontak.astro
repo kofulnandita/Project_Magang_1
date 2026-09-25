@@ -1,0 +1,343 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// ============================================================================
+// DATA KONTAK UTAMA 
+// ============================================================================
+const emailResmi = "larikprojectmagang@gmail.com";
+const nomorTelepon = "+62 812-3456-7890";
+const lokasiStudio = "Indonesia";
+const estimasiRespon = "Secepat Kilat~";
+---
+
+<Layout title="Kontak">
+  <section class="section">
+    <div class="container contact-layout">
+
+      <!-- ================================================================= -->
+      <!-- BAGIAN KIRI: INFORMASI & SALURAN KONTAK                           -->
+      <!-- ================================================================= -->
+      <div class="contact-info">
+        
+        <!-- Tag Kategori -->
+        <div class="badge-pill">
+          <span>&lt;/&gt;</span>
+          <span>KONSULTASI & DISKUSI</span>
+        </div>
+
+        <!-- Judul Halaman -->
+        <h1 class="contact-title">
+          Mari Diskusikan 
+          <br />
+          <em>Proyek Anda</em>
+        </h1>
+
+        <!-- Deskripsi Halaman -->
+        <p class="lede">
+          Punya rancangan produk digital, Bertanya seputar DevOPS, 
+          atau ingin berkolaborasi? 
+          Kami siap mendengarkan dan bertukar ide dengan anda.
+        </p>
+
+        <!-- Daftar Kartu Kontak -->
+        <div class="contact-cards-list">
+
+          <!-- Kartu 1: Email -->
+          <div class="glass-card contact-channel-card">
+            <div class="channel-icon">
+              <svg 
+                width="22" 
+                height="22" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div>
+              <span class="channel-label">Email Resmi</span>
+              <a href={`mailto:${emailResmi}`} class="channel-val">
+                {emailResmi}
+              </a>
+            </div>
+          </div>
+
+          <!-- Kartu 2: Telepon & WA -->
+          <div class="glass-card contact-channel-card">
+            <div class="channel-icon">
+              <svg 
+                width="22" 
+                height="22" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="channel-label">Telepon & WhatsApp</span>
+              <a href={`tel:${nomorTelepon.replace(/[^0-9+]/g, '')}`} class="channel-val">
+                {nomorTelepon}
+              </a>
+            </div>
+          </div>
+
+          <!-- Kartu 3: Lokasi -->
+          <div class="glass-card contact-channel-card">
+            <div class="channel-icon">
+              <svg 
+                width="22" 
+                height="22" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <span class="channel-label">Lokasi</span>
+              <span class="channel-val">
+                {lokasiStudio}
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Indikator Waktu Respon -->
+        <div class="response-pledge">
+          <span class="pledge-dot"></span>
+          <span>Estimasi respon: {estimasiRespon}</span>
+        </div>
+
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- BAGIAN KANAN: FORMULIR PESAN                                      -->
+      <!-- ================================================================= -->
+      <div class="contact-form-wrapper">
+        <div class="glass-card contact-form-card">
+          
+          <div class="form-card-header">
+            <h3>Kirim Pesan Langsung</h3>
+            <p>Isi formulir di bawah ini, kami akan merespon ke email Anda.</p>
+          </div>
+
+          <form class="contact-form" aria-label="Form kontak Larik">
+            
+            <!-- Input 1: Nama -->
+            <div class="form-group">
+              <label for="name" class="form-label">
+                Nama Lengkap
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                placeholder="Contoh: Surya Anandita"
+                required
+              />
+            </div>
+
+            <!-- Input 2: Email -->
+            <div class="form-group">
+              <label for="email" class="form-label">
+                Alamat Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="namaperusahaan@gmail.com"
+                required
+              />
+            </div>
+
+            <!-- Input 3: Subjek -->
+            <div class="form-group">
+              <label for="subject" class="form-label">
+                Topik Diskusi
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                class="form-input"
+                placeholder="Contoh: Pembuatan Website Company Profile"
+              />
+            </div>
+
+            <!-- Input 4: Pesan -->
+            <div class="form-group">
+              <label for="message" class="form-label">
+                Pesan / Kebutuhan Proyek
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                class="form-textarea"
+                placeholder="Tuliskan deskripsi proyek atau pertanyaan Anda di sini..."
+                required
+              ></textarea>
+            </div>
+
+            <!-- Tombol Kirim -->
+            <button type="submit" class="btn btn--primary form-submit-btn">
+              Kirim Pesan Sekarang
+              <svg 
+                width="15" 
+                height="15" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2.5"
+              >
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+
+            <!-- Catatan Integrasi -->
+            <p class="form-disclaimer">
+              Catatan: Formulir siap dihubungkan ke layanan Formspree / API email Anda.
+            </p>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-title {
+    margin-bottom: 20px;
+    line-height: 1.15;
+  }
+
+  .contact-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 36px 0 28px;
+  }
+
+  .contact-channel-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 24px;
+  }
+
+  .channel-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .channel-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .channel-val {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a.channel-val:hover {
+    color: var(--accent-cyan);
+  }
+
+  .response-pledge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    padding: 8px 16px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .pledge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+
+  .contact-form-card {
+    padding: 40px;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .form-card-header h3 {
+    font-size: 1.5rem;
+    margin: 0 0 6px;
+    color: #ffffff;
+  }
+
+  .form-card-header p {
+    font-size: 0.92rem;
+    margin-bottom: 28px;
+    color: var(--text-muted);
+  }
+
+  .form-submit-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px 28px;
+  }
+
+  .form-disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin: 14px 0 0;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+</style>

@@ -1,0 +1,8 @@
+{
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000
+}

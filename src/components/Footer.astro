@@ -1,0 +1,361 @@
+---
+const year = new Date().getFullYear();
+
+// ============================================================================
+// KONTAK FOOTER 
+// ============================================================================
+const footerEmail = "larikprojectmagang@gmail.com";
+const footerPhone = "+62 812-3456-7890";
+const footerLocation = "Indonesia";
+---
+
+<footer class="footer">
+  <div class="container footer__content">
+    <div class="footer__grid">
+
+      <!-- ================================================================= -->
+      <!-- KOLOM 1: IDENTITAS STUDIO                                         -->
+      <!-- ================================================================= -->
+      <div class="footer__brand-col">
+        <a href="/" class="footer__brand">
+          <div class="footer__logo-mark" aria-hidden="true">&lt;/&gt;</div>
+          <span class="footer__brand-text">
+            Larik<span>.</span>
+          </span>
+        </a>
+        <p class="footer__desc">
+          Studio digital yang menyimpan proyek kami selama magang, kami bisa membangun web app, dan sistem terintegrasi berkaitan dengan DevOPS.
+        </p>
+        <div class="footer__status">
+          <span class="status-dot"></span>
+          <span>Siap untuk kolaborasi & project baru</span>
+        </div>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- KOLOM 2: TAUTAN NAVIGASI                                          -->
+      <!-- ================================================================= -->
+      <div class="footer__col">
+        <p class="footer__heading">Navigasi</p>
+        <ul class="footer__links">
+          <li>
+            <a href="/">Beranda</a>
+          </li>
+          <li>
+            <a href="/layanan">Layanan</a>
+          </li>
+          <li>
+            <a href="/tentang">Tentang Kami</a>
+          </li>
+          <li>
+            <a href="/karya">Karya / Portofolio</a>
+          </li>
+          <li>
+            <a href="/kontak">Hubungi Kami</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- KOLOM 3: KONTAK LANGSUNG                                          -->
+      <!-- ================================================================= -->
+      <div class="footer__col">
+        <p class="footer__heading">Kontak</p>
+        <div class="footer__contact-items">
+          
+          <a href={`mailto:${footerEmail}`} class="footer__contact-link">
+            <svg 
+              width="16" 
+              height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+            >
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            {footerEmail}
+          </a>
+
+          <a href={`tel:${footerPhone.replace(/[^0-9+]/g, '')}`} class="footer__contact-link">
+            <svg 
+              width="16" 
+              height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+            >
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            {footerPhone}
+          </a>
+
+          <span class="footer__contact-link">
+            <svg 
+              width="16" 
+              height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            {footerLocation}
+          </span>
+
+        </div>
+      </div>
+
+      <!-- ================================================================= -->
+      <!-- KOLOM 4: TAUTAN SOSIAL MEDIA                                      -->
+      <!-- ================================================================= -->
+      <div class="footer__col">
+        <p class="footer__heading">Terhubung</p>
+        <div class="footer__socials">
+          <a 
+            href="https://github.com" 
+            target="_blank" 
+            rel="noopener" 
+            class="footer__social-btn" 
+            aria-label="GitHub"
+          >
+            GitHub ↗
+          </a>
+          <a 
+            href="https://linkedin.com" 
+            target="_blank" 
+            rel="noopener" 
+            class="footer__social-btn" 
+            aria-label="LinkedIn"
+          >
+            LinkedIn ↗
+          </a>
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener" 
+            class="footer__social-btn" 
+            aria-label="Instagram"
+          >
+            Instagram ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Garis Penutup & Copyright -->
+    <div class="footer__bottom">
+      <p>
+        © {year} Larik Digital Studio. Dikembangkan Kami dengan dedikasi selama program magang.
+      </p>
+      <div class="footer__bottom-tags">
+        <span>Astro 7</span>
+        <span>•</span>
+        <span>Modern Dark Tech</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #04070e;
+    border-top: 1px solid var(--border-subtle);
+    padding: 80px 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+    gap: 48px;
+  }
+
+  .footer__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+
+  .footer__logo-mark {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(0, 210, 255, 0.2), rgba(59, 130, 246, 0.2));
+    border: 1px solid rgba(0, 210, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+  }
+
+  .footer__brand-text {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .footer__brand-text span {
+    color: var(--accent-cyan);
+  }
+
+  .footer__desc {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    max-width: 36ch;
+    margin-bottom: 20px;
+  }
+
+  .footer__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    padding: 5px 12px;
+    border-radius: 9999px;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+  }
+
+  .footer__heading {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ffffff;
+    margin: 0 0 18px;
+  }
+
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer__links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+
+  .footer__links a:hover {
+    color: var(--accent-cyan);
+    padding-left: 4px;
+  }
+
+  .footer__contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer__contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer__contact-link:hover {
+    color: #ffffff;
+  }
+
+  .footer__contact-link svg {
+    color: var(--accent-cyan);
+    flex-shrink: 0;
+  }
+
+  .footer__socials {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer__social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+
+  .footer__social-btn:hover {
+    color: var(--accent-cyan);
+    transform: translateX(3px);
+  }
+
+  .footer__bottom {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.84rem;
+    color: var(--text-dim);
+  }
+
+  .footer__bottom p {
+    margin: 0;
+  }
+
+  .footer__bottom-tags {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+  }
+</style>

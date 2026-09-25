@@ -1,0 +1,280 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// ============================================================================
+// DAFTAR LAYANAN 
+// ============================================================================
+const servicesList = [
+  {
+    tag: "PROFIL BISNIS",
+    title: "Website Company Profile",
+    desc: "Website resmi untuk menampilkan profil, layanan, dan portofolio perusahaan atau usaha kamu dengan visual yang kredibel dan memikat calon mitra bisnis.",
+    features: [
+      "Desain responsif & modern",
+      "Struktur informasi rapi & cepat diakses",
+      "Formulir kontak & integrasi media sosial"
+    ]
+  },
+  {
+    tag: "GIT | GIT HUB | GIT LAB",
+    title: "Mempelajari Bagaimana GIT Bekerja",
+    desc: "Sebagai dasar dari menjadi Seorang DEV OPS, Kami mendapatakan kesempatan untuk mendalami dan mempelajari GIT.",
+    features: [
+      "Penggunaan dan Mengkoordinasikan Project di GIT HUB",
+      "Melalui Command Prompt",
+    ]
+  },
+  {
+    tag: "Coming Soon",
+    title: "Coming SOON",
+    desc: "Coming SOON.",
+    features: [
+    ]
+  },
+     {
+    tag: "Coming Soon",
+    title: "Coming SOON",
+    desc: "Coming SOON.",
+    features: [
+    ]
+  },
+];
+---
+
+<Layout title="Layanan">
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 1: HEADER HALAMAN LAYANAN                                      -->
+  <!-- ===================================================================== -->
+  <section class="section section--tight">
+    <div class="container">
+      
+      <div class="badge-pill">
+        <span>&lt;/&gt;</span>
+        <span>SOLUSI & KAPABILITAS</span>
+      </div>
+
+      <h1>
+        <em>Ilmu dan Keahlian yang Kami</em> 
+        <br />
+        <em>Dapatkan...</em>
+      </h1>
+
+      <p class="lede">
+        Tidak berhenti pada pengalaman merasakan keseharian bagaimana menjadi seorang Karyawan di tempat Kami magang, Kami mendapatkan ilmu baru dan keahlian yang dapat kami jadikan bekal untuk kelak kami melaksanakan seorang karyawan yang sesuai dengan bidang yang kami tekuni di Perkuliahan. 
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 2: DAFTAR KARTU LAYANAN                                        -->
+  <!-- ===================================================================== -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container services-container">
+      {servicesList.map((service) => (
+        <div class="glass-card service-detail-card">
+          
+          <div class="service-detail-card__header">
+            <div class="service-detail-card__icon">
+              <svg 
+                width="28" 
+                height="28" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <div>
+              <span class="tag">
+                {service.tag}
+              </span>
+              <h2 class="service-detail-card__title">
+                {service.title}
+              </h2>
+            </div>
+          </div>
+
+          <p class="service-detail-card__desc">
+            {service.desc}
+          </p>
+
+          <hr class="hairline" style="margin: 24px 0;" />
+
+          <div class="service-detail-card__features">
+            <p class="features-label">
+              Fitur Utama & Keunggulan:
+            </p>
+            <ul class="features-list">
+              {service.features.map((feat) => (
+                <li>
+                  <svg 
+                    width="16" 
+                    height="16" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2.5"
+                  >
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>{feat}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="service-detail-card__footer">
+            <a href="/kontak" class="btn btn--primary">
+              Konsultasikan Kebutuhan Ini
+              <span>→</span>
+            </a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 3: BANNER KONSULTASI                                           -->
+  <!-- ===================================================================== -->
+  <section class="section section--darker">
+    <div class="container">
+      
+      <div class="consultation-banner glass-card">
+        <div>
+          <h2>
+            Butuh solusi digital yang 
+            <em>kustom?</em>
+          </h2>
+          <p class="lede" style="margin-bottom: 0;">
+            Ceritakan tantangan teknis atau ide produk yang ingin Anda selesaikan, 
+            kami siap membantu merumuskannya.
+          </p>
+        </div>
+        <a href="/kontak" class="btn btn--cyan">
+          Mulai Diskusi Teknis
+          <span>↗</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .services-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .service-detail-card {
+    padding: 40px;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .service-detail-card:hover {
+    border-color: var(--border-hover);
+  }
+
+  .service-detail-card__header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+
+  .service-detail-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.15);
+  }
+
+  .service-detail-card__title {
+    font-size: 1.8rem;
+    margin: 6px 0 0;
+  }
+
+  .service-detail-card__desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 75ch;
+    margin: 0;
+  }
+
+  .features-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+  }
+
+  .features-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-main);
+    font-size: 0.95rem;
+  }
+
+  .features-list svg {
+    color: var(--accent-cyan);
+    flex-shrink: 0;
+  }
+
+  .service-detail-card__footer {
+    margin-top: 32px;
+  }
+
+  .consultation-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    padding: 48px;
+    background: radial-gradient(circle at 10% 50%, rgba(0, 210, 255, 0.12) 0%, rgba(13, 20, 38, 0.9) 100%);
+  }
+
+  @media (max-width: 800px) {
+    .features-list {
+      grid-template-columns: 1fr;
+    }
+    .consultation-banner {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 32px;
+    }
+    .service-detail-card {
+      padding: 28px;
+    }
+  }
+</style>

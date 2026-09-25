@@ -1,0 +1,667 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectRow from "../components/ProjectRow.astro";
+import { getCollection } from "astro:content";
+
+// ============================================================================
+// DATA KONTEN BERANDA (Sangat mudah diedit di sini)
+// ============================================================================
+
+// 1. DATA HERO SECTION
+const heroTagline = "Studio Digital & Galeri Karya Tugas Magang";
+const heroLede = "Larik adalah studio digital kecil yang muncul pada saat kami menjalankan program magang — website ini seperti galeri kecil yang menyimpan kenangan dan karya kami selama magang.";
+
+// 2. DATA CHIP FITUR
+const featureChips = [
+  "GIT",
+  "Linux",
+  "Docker",
+  "AI Automation"
+];
+
+// 3. DATA STATISTIK / METRIK
+const statistics = [
+  { 
+    val: "100%", 
+    label: "Kode Rapi & Terstruktur" 
+  },
+  { 
+    val: "2+", 
+    label: "Developer & Desainer" 
+  },
+  { 
+    val: "100%", 
+    label: "Dedikasi Solusi Klien" 
+  },
+  { 
+    val: "< 1s", 
+    label: "Loading Cepat (Astro 7)" 
+  }
+];
+
+// 4. DATA LAYANAN UTAMA
+const servicesPreview = [
+  {
+    tag: "GIT",
+    title: "Mempelajari GIT Hub & GIT Lab ",
+    desc: "Mendapatkan kesempatan magang di bagian Developer & operasional (DevOPS) menjadi satu hal yang wajib untuk mempelajari GIT."
+  },
+  {
+    tag: "Linux",
+    title: "Dasar dan Advance",
+    desc: "Setelah GIT, Linux menjadi satu hal yang wajib untuk dipelajari."
+  },
+  {
+    tag: "Container & Kubernetes",
+    title: "Koordinasi project dan deploy ",
+    desc: "Untuk melaksanakan project dan menjadikan project tersebut berjalan, sebagai anak magang kami mendapatkan kesempatan untuk mempelajari Container dan Kubernetes ."
+  }
+  
+];
+
+// 5. DATA TAHAPAN KERJA
+const workProcess = [
+  {
+    number: "01",
+    title: "Perencanaan",
+    desc: "Menyelaraskan kebutuhan bisnis, riset pengguna, dan spesifikasi fitur yang esensial."
+  },
+  {
+    number: "02",
+    title: "Desain UI/UX",
+    desc: "Merancang wireframe dan prototipe modern dengan tipografi berkelas serta hierarki intuitif."
+  },
+  {
+    number: "03",
+    title: "Pengembangan",
+    desc: "Menulis kode rapi, arsitektur modular, performa cepat, dan standar aksesibilitas tinggi."
+  },
+  {
+    number: "04",
+    title: "Peluncuran",
+    desc: "Pemeriksaan kualitas menyeluruh, optimasi SEO, dan panduan serah terima yang jelas."
+  }
+];
+
+// Mengambil data proyek dari content collections
+const allProjects = await getCollection("projects");
+const featured = allProjects
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+<Layout title="Beranda">
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 1: HERO SECTION                                                -->
+  <!-- ===================================================================== -->
+  <section class="section hero">
+    <div class="container">
+      
+      <div class="hero__center">
+        
+        <!-- Tag Badge -->
+        <div class="badge-pill badge-pill--code">
+          <span>&lt;/&gt;</span>
+          <span>{heroTagline}</span>
+        </div>
+
+        <!-- Judul Hero (Gaya Serif + Italic Cyan) -->
+        <h1 class="hero__title">
+          Membangun Produk Digital dengan 
+          <br />
+          <em>Sentuhan Cerdas</em>
+        </h1>
+
+        <!-- Deskripsi Hero -->
+        <p class="lede hero__lede">
+          {heroLede}
+        </p>
+
+        <!-- Kapsul Fitur -->
+        <div class="hero__pills">
+          {featureChips.map((chip) => (
+            <span class="feature-chip">
+              <svg 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              {chip}
+            </span>
+          ))}
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="hero__actions">
+          
+          <a href="/karya" class="btn btn--primary">
+            Lihat Karya Kami
+            <svg 
+              width="15" 
+              height="15" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2.5"
+            >
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <a href="/tentang" class="btn btn--ghost">
+            Tentang Studio
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- Baris Statistik & Metrik -->
+      <div class="stats-row">
+        {statistics.map((stat) => (
+          <div class="stat-item">
+            <div class="stat-item__val">
+              {stat.val}
+            </div>
+            <p class="stat-item__label">
+              {stat.label}
+            </p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 2: PREVIEW LAYANAN                                             -->
+  <!-- ===================================================================== -->
+  <section class="section section--darker">
+    <div class="container">
+      
+      <!-- Header Section -->
+      <div class="section__header">
+        <div>
+          <span class="section__eyebrow">Insight Baru</span>
+          <h2>
+            Ilmu & Keahlian yang Kami Dapatkan
+            Selama Magang
+            <em>di PLN ICON PLUS</em>
+          </h2>
+        </div>
+        <a href="/layanan" class="section__more-link">
+          Lihat Semua 
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Grid Kartu Layanan -->
+      <div class="services-grid">
+        {servicesPreview.map((service) => (
+          <div class="glass-card service-card">
+            
+            <div class="service-card__icon">
+              <svg 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+
+            <span class="tag">
+              {service.tag}
+            </span>
+
+            <h3>
+              {service.title}
+            </h3>
+
+            <p>
+              {service.desc}
+            </p>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 3: ALUR KERJA / WORK PROCESS                                   -->
+  <!-- ===================================================================== -->
+  <section class="section">
+    <div class="container">
+      
+      <!-- Header Tengah -->
+      <div class="section__center-header">
+        <span class="section__eyebrow">METODOLOGI KAMI</span>
+        <h2>
+          Alur Kerja yang Terarah & 
+          <em>Transparan</em>
+        </h2>
+        <p class="lede" style="margin: 0 auto;">
+          Dua orang, satu komitmen: mengeksekusi setiap proyek dengan tahapan sistematis
+          layaknya seorang profesional.
+        </p>
+      </div>
+
+      <!-- Grid 4 Langkah Kerja -->
+      <div class="process-grid">
+        {workProcess.map((step) => (
+          <div class="glass-card process-card">
+            
+            <div class="process-card__number">
+              {step.number}
+            </div>
+
+            <h3 class="process-card__title">
+              {step.title}
+            </h3>
+
+            <p class="process-card__desc">
+              {step.desc}
+            </p>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 4: PREVIEW TENTANG KAMI                                        -->
+  <!-- ===================================================================== -->
+  <section class="section section--darker">
+    <div class="container">
+      
+      <div class="about-callout glass-card">
+        
+        <div class="about-callout__content">
+          <span class="section__eyebrow">TENTANG KAMI</span>
+          <h2>
+            Studio kecil, cara kerja yang 
+            <em>serius</em>.
+          </h2>
+          <p class="lede">
+            Dua orang, satu tujuan: bikin produk yang berfungsi baik dan enak dipandang.
+            Setiap project kami kerjakan dengan dedikasi terbaik dari kami.
+          </p>
+          
+          <div class="about-callout__team">
+            <div class="team-mini-pill">
+              <span class="team-mini-avatar">FC</span>
+              <span>Frontend & Struktur</span>
+            </div>
+            <div class="team-mini-pill">
+              <span class="team-mini-avatar">PM</span>
+              <span>Konten & Manajemen</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-callout__action">
+          <a href="/tentang" class="btn btn--primary">
+            Pelajari Profil Kami
+            <span>→</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 5: PORTOFOLIO / KARYA PILIHAN                                  -->
+  <!-- ===================================================================== -->
+  <section class="section">
+    <div class="container">
+      
+      <div class="section__header">
+        <div>
+          <span class="section__eyebrow">PORTOFOLIO TERBARU</span>
+          <h2>
+            Eksplorasi Karya 
+            <em>Kami</em>
+          </h2>
+        </div>
+        <a href="/karya" class="section__more-link">
+          Lihat Semua Karya ({allProjects.length})
+          <span>→</span>
+        </a>
+      </div>
+
+      {featured.length === 0 ? (
+        <div class="glass-card" style="text-align: center; padding: 48px;">
+          <p class="lede">
+            Belum ada project yang ditambahkan di <code>src/content/projects/</code>.
+          </p>
+        </div>
+      ) : (
+        <div class="projects-list">
+          {featured.map((p) => (
+            <ProjectRow
+              title={p.data.title}
+              description={p.data.description}
+              tags={p.data.tags}
+              href={`/karya/${p.id}`}
+            />
+          ))}
+        </div>
+      )}
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- BAGIAN 6: CALL TO ACTION (CTA)                                        -->
+  <!-- ===================================================================== -->
+  <section class="section section--darker">
+    <div class="container">
+      
+      <div class="cta-box glass-card">
+        <div class="cta-box__glow" aria-hidden="true"></div>
+        <span class="badge-pill">MULAI DISKUSI</span>
+        
+        <h2>
+          Punya ide atau kebutuhan proyek? 
+          <br />
+          Mari <em>wujudkan bersama.</em>
+        </h2>
+        
+        <p class="lede">
+          Kami siap berdiskusi mengenai kebutuhan project anda mulai dari Pengembangan Web App, AI Automation dan kebutuhan Dev Ops.
+        </p>
+
+        <div class="cta-box__actions">
+          <a href="/kontak" class="btn btn--primary">
+            Hubungi Kami Sekarang
+            <span>→</span>
+          </a>
+          <a href="mailto:larikprojectmagang@gmail.com" class="btn btn--ghost">
+            Kirim Email Langsung
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* Hero Styles */
+  .hero {
+    padding: 100px 0 60px;
+  }
+
+  .hero__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero__title {
+    margin-bottom: 24px;
+    max-width: 22ch;
+    line-height: 1.15;
+  }
+
+  .hero__lede {
+    margin: 0 auto 36px;
+  }
+
+  .hero__pills {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Section Header */
+  .section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .section__center-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 56px;
+  }
+
+  .section__eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent-cyan);
+    margin-bottom: 12px;
+  }
+
+  .section__more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .section__more-link:hover {
+    color: #ffffff;
+    transform: translateX(3px);
+  }
+
+  /* Services Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .service-card h3 {
+    margin: 12px 0 8px;
+  }
+
+  .service-card p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Process Grid */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .process-card {
+    padding: 28px 24px;
+  }
+
+  .process-card__number {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    margin-bottom: 16px;
+    text-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+  }
+
+  .process-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .process-card__desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* About Callout */
+  .about-callout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+    padding: 48px;
+    background: linear-gradient(135deg, rgba(13, 20, 38, 0.9) 0%, rgba(18, 30, 60, 0.75) 100%);
+  }
+
+  .about-callout__content {
+    max-width: 650px;
+  }
+
+  .about-callout__content h2 {
+    margin-bottom: 16px;
+  }
+
+  .about-callout__team {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .team-mini-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 0.84rem;
+    color: var(--text-main);
+  }
+
+  .team-mini-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent-cyan);
+    color: #060911;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  /* CTA Box */
+  .cta-box {
+    text-align: center;
+    padding: 72px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-color: rgba(0, 210, 255, 0.25);
+    background: radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.1) 0%, rgba(13, 20, 38, 0.85) 60%);
+  }
+
+  .cta-box__glow {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 150px;
+    background: radial-gradient(ellipse, rgba(0, 210, 255, 0.25), transparent 70%);
+    pointer-events: none;
+    filter: blur(40px);
+  }
+
+  .cta-box h2 {
+    max-width: 22ch;
+    margin-bottom: 16px;
+  }
+
+  .cta-box .lede {
+    margin-bottom: 32px;
+  }
+
+  .cta-box__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 960px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .about-callout {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 32px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+    .cta-box {
+      padding: 48px 20px;
+    }
+  }
+</style>
