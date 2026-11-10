@@ -1,0 +1,17 @@
+version: 2
+updates:
+  # Update dependency npm di WEB_COMPANY tiap minggu
+  - package-ecosystem: npm
+    directory: /WEB_COMPANY
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      astro:
+        patterns: ["astro", "@astrojs/*"]
+
+  # Update versi GitHub Actions yang dipakai di workflow
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
